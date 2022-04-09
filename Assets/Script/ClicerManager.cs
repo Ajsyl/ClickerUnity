@@ -9,10 +9,11 @@ public class ClicerManager : MonoBehaviour
     [SerializeField] private ClickerUI clicerUi;
     [SerializeField] private Button clickerButton;
 
-    private int pointsCounter = 0;
+    private int pointsCounter; 
 
     private void Start()
     {
+        pointsCounter = PlayerPrefs.GetInt("pointsCounter", 0);
         clicerUi.UpdateUi(pointsCounter);
         clickerButton.onClick.AddListener(AddPoints);
     }
@@ -20,6 +21,7 @@ public class ClicerManager : MonoBehaviour
     private void AddPoints()
     {
         pointsCounter += 1;
+        PlayerPrefs.SetInt("pointsCounter",pointsCounter);
         clicerUi.UpdateUi(pointsCounter);
     }
 }
